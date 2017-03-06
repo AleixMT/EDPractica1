@@ -80,7 +80,7 @@ public class Aplicacio {
 			msg[i]=tad.eliminar();
 			i++;
 		}
-		System.out.println(msg);
+		System.out.println(msg); 
 		while (!correct){
 			System.out.println("What do you want to do? Crypt or decrypt? (introduce 1 or 2)");
 			opt=teclat.nextInt(); //falten excepcions
