@@ -1,5 +1,7 @@
 package Dades;
 
+import Interface.TADinterface;
+
 public abstract class TAD implements TADinterface {
 	protected char[] Msg;
 	protected int[] key;

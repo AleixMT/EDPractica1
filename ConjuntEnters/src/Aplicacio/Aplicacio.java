@@ -6,6 +6,9 @@ import Exceptions.*;
 import Dades.*;
 
 public class Aplicacio {
+	//Cal ordenar les classes (estan mesclades les del sego i tercer lab) ja qu ehi ha mlt codi aprofitable,
+	// pero en general es tracta de aprofitar la interficie del programa del segon lab i les classes del tercer, 
+	// cambiant la pila per una cua
 
 	static Scanner teclat=new Scanner(System.in);
 	
