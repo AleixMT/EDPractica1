@@ -1,9 +1,8 @@
 package Dades;
-
 import java.util.Arrays;
-
 import Exceptions.PilaBuida;
 import Exceptions.PilaPlena;
+import Interface.TADCua;
 
 public class Cua implements TADCua{
 	private int[] cuaFIFO;

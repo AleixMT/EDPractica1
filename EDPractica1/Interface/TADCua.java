@@ -1,4 +1,4 @@
-package Dades;
+package Interface;
 import Exceptions.*;
 /**
  * Interface per a definir el contenidor/col�lecci� pila d'enters.

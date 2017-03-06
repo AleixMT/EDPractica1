@@ -14,10 +14,8 @@ public class Aplicacio {
 	
 	public static void main(String[] args) throws conjuntPle, jaExisteix, IOException {
 		boolean correct=false;
-		char[] alfabet = new char[]{'A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'};
 		//long tempsi, tempsf; // temps per a mesurar l'eficiencia de l'algorisme
 		int opt=0;
-		Cua tad=null;
 		while (opt==0)
 		{
 			for (int i=0; i<100; i++) System.out.println("\n");
@@ -36,7 +34,7 @@ public class Aplicacio {
 			}
 			for (int i=0; i<100; i++) System.out.println("\n"); //cls
 			switch(opt) {
-				case 1: tad=new Cua(99999); opt=1; break;
+				case 1: Cua tad=new Cua(99999); opt=1; break;
 				//case 2: cjt=new ConjEntersOrd(numElem);break;
 				//case 3: cjt=new ConjEntersAltres(MAX_VALOR);break; 
 				//case 4: 
