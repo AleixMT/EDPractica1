@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
-	<classpathentry kind="src" path="ConjuntEnters/src"/>
+	<classpathentry kind="src" path="ConjuntEnters/EDPractica1"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="output" path="ConjuntEnters/bin"/>
 </classpath>
