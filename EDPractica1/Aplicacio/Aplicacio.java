@@ -3,7 +3,7 @@ import java.io.*;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 import Exceptions.*;
-import Interface.TADCua;
+import Interface.*;
 import Dades.*;
 
 public class Aplicacio {
@@ -13,12 +13,10 @@ public class Aplicacio {
 
 	static Scanner teclat=new Scanner(System.in);
 	
-	public static void main(String[] args) throws conjuntPle, jaExisteix, IOException {
-		boolean correct=false;
-		long ti, tf; // temps per a mesurar l'eficiencia de l'algorisme
-		//TADCua tad=null;
+	public static TADCua menu(){//ARREGLAR EL PROBLEMA DELS TAD
 		int opt=0;
-		while (opt==0)
+		TADCua tad = null;
+		while (tad==null) //mentre que el usuari no indiqui l'estructura
 		{
 			for (int i=0; i<100; i++) System.out.println("\n");
 			System.out.println("Which version do you want to use?");
@@ -28,7 +26,7 @@ public class Aplicacio {
 			System.out.println("4.-Utilitzar una estructura de les java.util.collection");
 			try
 			{
-				opt=teclat.nextInt(); //necessita excepcions
+				opt=teclat.nextInt();
 			}
 			catch (InputMismatchException e)
 			{
@@ -40,32 +38,35 @@ public class Aplicacio {
 				case 2: CuaCircular cuaCir=new CuaCircular(99999); opt=2;break; 
 				case 3: CuaDinamica cuaDin=new CuaDinamica();opt=3;break;
 				case 4: JavaUtil javaUtil=new JavaUtil();opt=4;break;
-				default: System.out.println("Oops, wrong option, try again!");
+				default: System.out.println("Oops, opcio incorrecta, torna-ho a intentar!");
 			}
 		}
+		return tad; //RETORNA LA INSTANCIA TIPUS CUA
+	}
+	
+	public static void clau(TADCua tad) throws PilaPlena{
+		boolean correct=false;
 		System.out.println("Introdueix el nombre de digits de la clau");
 		int digits=0;
 		while (!correct)
 		{
 			try
 			{
-				digits = teclat.nextInt(); //necessita exceptions
+				digits = teclat.nextInt();
 				correct=true;
 			}
 			catch (InputMismatchException e)
 			{
 				System.out.println("Has introduit una cadena incorrecta, torna-ho a intentar");
 			}
-
 		}
-		
-		opt=0;
+		int opt=0;
 		System.out.println("Introdueix cada digit de la clau apretant intro quan acabis d'escriure cada caracter");
 		while (opt<digits)
 		{
 			try
 			{
-			   tad.encuar(teclat.nextInt()); //Necessita exepcions
+			   tad.encuar(teclat.nextInt());  //encua directament la clau al tad corresponent
 	           opt++;
 			}
             catch (InputMismatchException e)
@@ -73,9 +74,10 @@ public class Aplicacio {
 				System.out.println("Has introduit una cadena incorrecta, torna-ho a intentar");
 			}
 		}
-		
-		//llegir missatge del fitxer
-		
+		 
+	}
+	
+	public static char[] llegirFitxer() throws FileNotFoundException{
 		String file = null;
 		String str = null;
 		try{
@@ -104,8 +106,14 @@ public class Aplicacio {
 			System.out.println("Error amb el fitxer.");
 		}
 		System.out.println("Missatge original: "+str);
-		char[] msg = str.toCharArray(); //passem el string a un char array per a poder encriptar/desencriptar
-		
+		return str.toCharArray(); //passem el string a un char array per a poder encriptar/desencriptar
+	}
+	
+	
+	public static void options(char[] msg){ //aqui et falta fer lo de encriptar/desencriptar
+		boolean correct = false;
+		long ti, tf; // temps per a mesurar l'eficiencia de l'algorisme
+		int opt=0;
 		while (!correct){
 			System.out.println("Vols encriptar o desencriptar? (introdueix 1 o 2)");
 			opt=teclat.nextInt(); 
@@ -113,22 +121,28 @@ public class Aplicacio {
 			if (opt==1||opt==2) correct=true;
 			else System.out.println("Oops, no has introduit be el codi, torna-ho a intentar:");
 		}
+		ti = System.nanoTime(); //capturar temps inicial
 		if (opt==2)
 		{
-			ti = System.nanoTime();
 			//desencriptar
-			tf = System.nanoTime();
-			System.out.println("El temps que ha trigat en desencriptar es: "+(ti-tf));
 		}
 		else
 		{
-			ti = System.nanoTime();
 			//encriptar
-			tf = System.nanoTime();
-			System.out.println("El temps que ha trigat en encriptar es: "+(ti-tf));
 		}
+		tf = System.nanoTime(); //capturar temps final
+		String str = new String(msg); //convertir de char[] a String	
+		System.out.println("El missatge final es: "+str+"El temps que ha trigat es: "+(ti-tf)); //aqui he puesto el msg final pero si te lo quieres meter tu dentro del if a tu bola
 		
-		
+	}
+	
+	public static void main(String[] args) throws FileNotFoundException, PilaPlena {
+		char[] msg = null;
+		TADCua tad = null;
+		menu(); //preguntem al usuari quina estructura vol
+		clau(tad); //obtenir clau
+		msg = llegirFitxer(); //li passem l'array on volem que ens guardi el missatge
+		options(msg);	//li passem el missatge del fitxer	
 	}
 }
 		/*

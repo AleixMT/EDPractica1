@@ -6,7 +6,7 @@ import Exceptions.*;
  * @author Aleix Marine i Cristina Izquierdo
  *
  */
-public interface TADCua {
+public abstract interface TADCua {
 	/**
 	 * Afegeix un enter a la pila
 	 * @param e - enter a afegir
