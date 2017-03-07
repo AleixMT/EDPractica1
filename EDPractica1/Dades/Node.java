@@ -1,5 +1,9 @@
 package Dades;
-
+/**
+ * Classe Node per a crear la cua dinamica
+ * @author Aleix Marine
+ *
+ */
 public class Node {
 	private int valor;
 	private Node anterior;

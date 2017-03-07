@@ -1,9 +1,13 @@
 package Dades;
 
-import Exceptions.PilaBuida;
-import Exceptions.PilaPlena;
+import Exceptions.CuaBuida;
+import Exceptions.CuaPlena;
 import Interface.TADCua;
-
+/**
+ * Classe per a implementar una cua circular
+ * @author Cristina Izquierdo
+ *
+ */
 public class CuaCircular implements TADCua{
 	int[] cuaCir;
 	int primer, numElem, MAX_ELEM;
@@ -17,8 +21,8 @@ public class CuaCircular implements TADCua{
 	}
 	
 	@Override
-	public void encuar(int e) throws PilaPlena{
-		if (numElem == MAX_ELEM) throw new PilaPlena(e);
+	public void encuar(int e) throws CuaPlena{
+		if (numElem == MAX_ELEM) throw new CuaPlena(e);
 		else{
 			cuaCir[primer++] = e; //afegim el nou element a la seguent posicio
 			primer = (primer+1)%MAX_ELEM; //tornem a calcular la posicio
@@ -27,8 +31,8 @@ public class CuaCircular implements TADCua{
 	}
 
 	@Override
-	public int desencuar() throws PilaBuida {
-		if (esBuida()) throw new PilaBuida();
+	public int desencuar() throws CuaBuida {
+		if (esBuida()) throw new CuaBuida();
 		else{
 			int pos=(primer+numElem)%MAX_ELEM;
 			int value = cuaCir[pos]; //retornem el que hi havia primer
@@ -40,8 +44,8 @@ public class CuaCircular implements TADCua{
 	}
 
 	@Override
-	public int cap() throws PilaBuida {
-		if (esBuida()) throw new PilaBuida();
+	public int cap() throws CuaBuida {
+		if (esBuida()) throw new CuaBuida();
 		else{
 			int pos=(primer+numElem)%MAX_ELEM;
 			return cuaCir[pos]; //retornem el primer

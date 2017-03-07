@@ -1,9 +1,13 @@
 package Dades;
 import java.util.Arrays;
-import Exceptions.PilaBuida;
-import Exceptions.PilaPlena;
+import Exceptions.CuaBuida;
+import Exceptions.CuaPlena;
 import Interface.TADCua;
-
+/**
+ * Classe per a implementar una cua FIFO
+ * @author Aleix Marine
+ *
+ */
 public class Cua implements TADCua{
 	private int[] cuaFIFO;
 	private int cap;
@@ -15,10 +19,10 @@ public class Cua implements TADCua{
 		this.cuaFIFO=new int[Elem];
 	}
 	
-	public int desencuar() throws PilaBuida{
+	public int desencuar() throws CuaBuida{
 		if (esBuida())
 		{
-			throw new PilaBuida();
+			throw new CuaBuida();
 		}
 		else
 		{
@@ -28,10 +32,10 @@ public class Cua implements TADCua{
 		
 	}
 
-	public void encuar(int e) throws PilaPlena {
+	public void encuar(int e) throws CuaPlena {
 		if (esPlena())
 		{
-			throw new PilaPlena(e);
+			throw new CuaPlena(e);
 		}
 		else
 		{
@@ -41,10 +45,10 @@ public class Cua implements TADCua{
 		
 	}
 
-	public int cap() throws PilaBuida {
+	public int cap() throws CuaBuida {
 		if (esBuida())
 		{
-			throw new PilaBuida();
+			throw new CuaBuida();
 		}
 		else
 		{

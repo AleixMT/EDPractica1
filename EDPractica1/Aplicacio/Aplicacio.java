@@ -34,7 +34,8 @@ public class Aplicacio {
 			}
 			for (int i=0; i<100; i++) System.out.println("\n"); //cls
 			switch(opt) {
-				case 1: Cua cua=new Cua(99999); opt=1; break;
+			//esto falta ponerlo con los tad (el nombre) 	
+			case 1: Cua cua=new Cua(99999); opt=1; break;
 				case 2: CuaCircular cuaCir=new CuaCircular(99999); opt=2;break; 
 				case 3: CuaDinamica cuaDin=new CuaDinamica();opt=3;break;
 				case 4: JavaUtil javaUtil=new JavaUtil();opt=4;break;
@@ -44,7 +45,7 @@ public class Aplicacio {
 		return tad; //RETORNA LA INSTANCIA TIPUS CUA
 	}
 	
-	public static void clau(TADCua tad) throws PilaPlena{
+	public static void clau(TADCua tad) throws CuaPlena{
 		boolean correct=false;
 		System.out.println("Introdueix el nombre de digits de la clau");
 		int digits=0;
@@ -136,7 +137,7 @@ public class Aplicacio {
 		
 	}
 	
-	public static void main(String[] args) throws FileNotFoundException, PilaPlena {
+	public static void main(String[] args) throws FileNotFoundException, CuaPlena {
 		char[] msg = null;
 		TADCua tad = null;
 		menu(); //preguntem al usuari quina estructura vol

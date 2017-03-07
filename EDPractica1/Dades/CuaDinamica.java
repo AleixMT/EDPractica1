@@ -1,8 +1,12 @@
 package Dades;
 
-import Exceptions.PilaBuida;
+import Exceptions.CuaBuida;
 import Interface.TADCua;
-
+/**
+ * Classe per a implementar una cua circular
+ * @author Cristina Izquierdo
+ *
+ */
 public class CuaDinamica implements TADCua{
 	private Node cim;
 	public CuaDinamica(){
@@ -13,10 +17,10 @@ public class CuaDinamica implements TADCua{
 		this.cim=nou;
 	}
 
-	public int desencuar() throws PilaBuida {
+	public int desencuar() throws CuaBuida {
 		if (esBuida())
 		{
-			throw new PilaBuida();
+			throw new CuaBuida();
 		}
 		else
 		{
@@ -38,10 +42,10 @@ public class CuaDinamica implements TADCua{
 		
 	}
 
-	public int cap() throws PilaBuida {
+	public int cap() throws CuaBuida {
 		if (esBuida())
 		{
-			throw new PilaBuida();
+			throw new CuaBuida();
 		}
 		else
 		{
