@@ -6,20 +6,24 @@ import Interface.TADCua;
 
 public class CuaCircular implements TADCua{
 	int[] cuaCir;
-	int primer, numElem, MAX_ELEM, ultim;
+	int primer, numElem, MAX_ELEM;
 	
 	
 	public CuaCircular (int MAX_ELEM){
 		this.cuaCir = new int[MAX_ELEM];
 		this.MAX_ELEM = MAX_ELEM;
 		this.primer = 0;
-		this.ultim = 0;
 		this.numElem = 0;
 	}
 	
 	@Override
 	public void encuar(int e) throws PilaPlena{
-		
+		if (numElem == MAX_ELEM) throw new PilaPlena(e);
+		else{
+			cuaCir[primer++] = e; //afegim el nou element a la seguent posicio
+			primer = (primer+1)%MAX_ELEM; //tornem a calcular la posicio
+			numElem++;
+		}
 	}
 
 	@Override
