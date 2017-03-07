@@ -1,8 +1,9 @@
 package Aplicacio;
-import java.util.*;
-import java.io.IOException;
+import java.io.*;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 import Exceptions.*;
+import Interface.TADCua;
 import Dades.*;
 
 public class Aplicacio {
@@ -14,15 +15,16 @@ public class Aplicacio {
 	
 	public static void main(String[] args) throws conjuntPle, jaExisteix, IOException {
 		boolean correct=false;
-		//long tempsi, tempsf; // temps per a mesurar l'eficiencia de l'algorisme
+		long ti, tf; // temps per a mesurar l'eficiencia de l'algorisme
+		//TADCua tad=null;
 		int opt=0;
 		while (opt==0)
 		{
 			for (int i=0; i<100; i++) System.out.println("\n");
 			System.out.println("Which version do you want to use?");
 			System.out.println("1.-Static memory");
-			System.out.println("2.-Memòria estàtica, cua circular sobre un vector.");
-			System.out.println("3.-Memòria dinàmica (punters/referències).");
+			System.out.println("2.-Memoria estatica, cua circular sobre un vector.");
+			System.out.println("3.-Memoria dinamica (punters/referencies).");
 			System.out.println("4.-Utilitzar una estructura de les java.util.collection");
 			try
 			{
@@ -34,14 +36,13 @@ public class Aplicacio {
 			}
 			for (int i=0; i<100; i++) System.out.println("\n"); //cls
 			switch(opt) {
-				case 1: Cua tad=new Cua(99999); opt=1; break;
-				//case 2: cjt=new ConjEntersOrd(numElem);break;
-				//case 3: cjt=new ConjEntersAltres(MAX_VALOR);break; 
-				//case 4: 
+				case 1: Cua cua=new Cua(99999); opt=1; break;
+				case 2: CuaCircular cuaCir=new CuaCircular(99999); opt=2;break; 
+				case 3: CuaDinamica cuaDin=new CuaDinamica();opt=3;break;
+				case 4: JavaUtil javaUtil=new JavaUtil();opt=4;break;
 				default: System.out.println("Oops, wrong option, try again!");
 			}
 		}
-		
 		System.out.println("Introdueix el nombre de digits de la clau");
 		int digits=0;
 		while (!correct)
@@ -59,7 +60,7 @@ public class Aplicacio {
 		}
 		
 		opt=0;
-		System.out.println("Introdueix cada digit de la clau apretant intro quan acabis d'escriure cada carácter");
+		System.out.println("Introdueix cada digit de la clau apretant intro quan acabis d'escriure cada caracter");
 		while (opt<digits)
 		{
 			try
@@ -73,42 +74,58 @@ public class Aplicacio {
 			}
 		}
 		
-		//de moment ho estic  fent amb cadenes per la entrada estandard, la entrada
-		//per fitxers la implementare en un altre moment
-		int i=0;
+		//llegir missatge del fitxer
 		
-		System.out.println("introduce msg");
-		teclat.nextLine(); //Buffer Flush
-		String str = teclat.nextLine();
-		char[] msg;
-		msg = str.toCharArray(); //Transformo el string a un vector de caracters
-		System.out.println(msg);
-
-		i=0;
-		System.out.println(tad.getMsg());
-		while (i<msg.length)
-		{
-			msg[i]=tad.eliminar();
-			i++;
+		String file = null;
+		String str = null;
+		try{
+		System.out.println("introdueix el nom del fitxer");
+		teclat.nextLine();
+		file = teclat.nextLine();
 		}
-		System.out.println(msg); 
+		catch (InputMismatchException e){
+			System.out.println("Has introduit un nom incorrecte, torna-ho a intentar");
+		}
+		
+		BufferedReader br= new BufferedReader(new FileReader(file));
+		try{
+			StringBuilder sb = new StringBuilder();
+			String line = br.readLine();
+			while (line != null){
+				sb.append(line);
+				sb.append(System.lineSeparator());
+				line = br.readLine();
+			}
+			str = sb.toString();
+		br.close();	
+		}catch (FileNotFoundException e){
+			System.out.println("No s'ha trobat el fitxer.");
+		}catch (IOException e){
+			System.out.println("Error amb el fitxer.");
+		}
+		System.out.println("Missatge original: "+str);
+		char[] msg = str.toCharArray(); //passem el string a un char array per a poder encriptar/desencriptar
+		
 		while (!correct){
-			System.out.println("What do you want to do? Crypt or decrypt? (introduce 1 or 2)");
-			opt=teclat.nextInt(); //falten excepcions
+			System.out.println("Vols encriptar o desencriptar? (introdueix 1 o 2)");
+			opt=teclat.nextInt(); 
 			for (int m=0; m<100; m++) System.out.println("\n"); //cls
 			if (opt==1||opt==2) correct=true;
-			else System.out.println("Oops, wrong option, try again!");
-
-			//comprovacions de que existeix el fitxer, mismatch de tipus, de mida de fitxer etc excpecions implementar
+			else System.out.println("Oops, no has introduit be el codi, torna-ho a intentar:");
 		}
 		if (opt==2)
 		{
-			System.out.println("Introduce the (name of the file) message you want to decrypt:");
-
+			ti = System.nanoTime();
+			//desencriptar
+			tf = System.nanoTime();
+			System.out.println("El temps que ha trigat en desencriptar es: "+(ti-tf));
 		}
 		else
 		{
-			System.out.println("Introduce the (name of the file) you want to crypt:");
+			ti = System.nanoTime();
+			//encriptar
+			tf = System.nanoTime();
+			System.out.println("El temps que ha trigat en encriptar es: "+(ti-tf));
 		}
 		
 		
