@@ -1,5 +1,5 @@
 package Dades;
-import java.util.Arrays;
+//import java.util.Arrays; 
 import Exceptions.CuaBuida;
 import Exceptions.CuaPlena;
 import Interface.TADCua;
@@ -73,8 +73,15 @@ public class Cua implements TADCua{
 		}
 	}
 
-	public String toString() {
+	/*public String toString() {
 		return "Cua [cua=" + Arrays.toString(cuaFIFO) + "]";
+	}*/
+	public String toString() {
+		String str ="";
+		for (int i=0; i<cuaFIFO.length; i++){
+			str=str+cuaFIFO[i];
+		}
+		return "Cua [cua=" +str+ "]";
 	}
 	
 	public int numElem(){
