@@ -2,37 +2,43 @@ package Dades;
 import Exceptions.CuaBuida;
 import Exceptions.CuaPlena;
 import Interface.TADCua;
-import java.*;
+import java.util.*;
 /**
  * Classe per a implementar una cua amb llibreries de java util
- * @author Cristina Izquierdo
+ * @author Cristina Izquierdo i Aleix Marine
  *
  */
 
 public class JavaUtil implements TADCua{
+	private ArrayDeque<Integer> tad;
+	
+
+	public JavaUtil() {
+		this.tad = new ArrayDeque<Integer>();
+	}
 
 	public void encuar(int e) throws CuaPlena {
-		
+		tad.addFirst(e); //afegim pel primer
 	}
 
 	public int desencuar() throws CuaBuida {
-		return 0;
+		return tad.removeLast(); //treiem pel final
 	}
 
-	public int cap() throws CuaBuida {
-		return 0;
+	public int cap() throws CuaBuida { //el primer de la llista
+		return tad.element();
 	}
 
 	public boolean esBuida() {
-		return false;
+		return tad.isEmpty();
 	}
 
 	public int numElem() {
-		return 0;
+		return tad.size();
 	}
 
 	public boolean esPlena() {
-		return false;
+		return false; //mai sera plena, segons la implementacio
 	}
 
 }
