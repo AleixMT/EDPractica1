@@ -7,49 +7,15 @@ import Interface.*;
 import Dades.*;
 
 public class Aplicacio {
-	//Cal ordenar les classes (estan mesclades les del sego i tercer lab) ja qu ehi ha mlt codi aprofitable,
-	// pero en general es tracta de aprofitar la interficie del programa del segon lab i les classes del tercer, 
-	// cambiant la pila per una cua
-
+	
 	static Scanner teclat=new Scanner(System.in);
 	
 	public static TADCua menu(){ //mostra el menú i inicialitza el TAD
-		int opt=0;
-		TADCua tad = null;
-		while (tad==null) //mentre que el usuari no indiqui l'estructura
-		{
-			System.out.println("Quina versió vols utilitzar?");
-			System.out.println("1.-Cua amb memoria estàtica");
-			System.out.println("2.-Cua circular memoria estàtica");
-			System.out.println("3.-Cua dinámica");
-			System.out.println("4.-Estructura de les java.util.collection");
-			try
-			{
-				opt=teclat.nextInt();
-				switch(opt) {
-				case 1: tad=new Cua(99999);break;
-				case 2: tad=new CuaCircular(99999); break; 
-				case 3: tad=new CuaDinamica();break;
-				case 4: tad=new JavaUtil();break;
-				default: System.out.println("Aquesta opció no està a la llista... \n");break;
-				}
-			}
-			catch (InputMismatchException e)
-			{
-				System.out.println("Exceptions.InputMismatchException: ERROR:Has introduit una cadena incorrecta, torna-ho a intentar \n");
-                teclat.nextLine();
-			}
-			
-		}
-		return tad; //RETORNA LA INSTANCIA TIPUS CUA
-	}
-	
-	public static void clau(TADCua tad){
 		boolean correct=false;
 		String clau="";
-		clau=teclat.nextLine();
-		int aux;
-		while (!correct)
+		int num=0;
+		int[] aux = new int[1000];
+		while (!correct)	//llegim la clau
 		{
 			System.out.println("Introdueix els digits de la clau");
 			clau=teclat.nextLine();
@@ -57,12 +23,11 @@ public class Aplicacio {
 			try
 			{
 				if (clau.isEmpty()) throw new Cadenabuida(); //llença excepció si està buida
-				for (int i=
-						0; i<nombres.length; i++)
+				for (int i=0; i<nombres.length; i++)
 				{
-					aux=Integer.parseInt(nombres[i]); //convertim string d'un sol nombre a enter
-					if (aux<1) throw new valorImpossible(aux);
-					tad.encuar(aux); 	  //encua directament la clau al tad corresponent, 
+					aux[i]=Integer.parseInt(nombres[i]); //convertim string d'un sol nombre a enter,en un vector d'enters
+					if (aux[i]<1) throw new valorImpossible(aux[i]);
+					num++;
 				}
 				correct=true;
 			}
@@ -74,7 +39,7 @@ public class Aplicacio {
 			{
 				System.out.println("Exceptions.InputMismatchException: ERROR:Has introduit una cadena incorrecta, torna-ho a intentar \n");
 			}
-			catch (CuaPlena e) 	//s'han introduit massa carácters
+			catch (valorImpossible e) //El valor es 0 
 			{
 				System.out.println(e);
 			}
@@ -82,16 +47,51 @@ public class Aplicacio {
 			{
 				System.out.println(e);
 			}
-			catch (valorImpossible e) //El valor es 0 o negatiu
+		} 
+		int opt=0;
+		TADCua tad = null;
+		while (tad==null) //mentre que el usuari no indiqui l'estructura
+		{
+			System.out.println("Quina versi� vols utilitzar?");
+			System.out.println("1.-Cua amb memoria estàtica");
+			System.out.println("2.-Cua circular memoria estàtica");
+			System.out.println("3.-Cua dinámica");
+			System.out.println("4.-Estructura de les java.util.collection");
+			try
+			{
+				opt=teclat.nextInt();
+				switch(opt) {
+				case 1: tad=new Cua(num);break;
+				case 2: tad=new CuaCircular(num); break; 
+				case 3: tad=new CuaDinamica();break;
+				case 4: tad=new JavaUtil();break;
+				default: System.out.println("Aquesta opció no està a la llista... \n");break;
+				}
+			}
+			catch (InputMismatchException e)
+			{
+				System.out.println("Exceptions.InputMismatchException: ERROR:Has introduit una cadena incorrecta, torna-ho a intentar \n");
+                teclat.nextLine();
+			}
+		}
+		for (int i=0; i<num; i++)
+		{
+			try
+			{
+				tad.encuar(aux[i]); 	  //encua directament la clau al tad corresponent, 
+			}
+			catch (CuaPlena e) 	//s'han introduit massa carácters
 			{
 				System.out.println(e);
 			}
-		} 
+		}
+		return tad; //RETORNA LA INSTANCIA TIPUS CUA
 	}
-	
+
 	public static String[] llegirFitxer(String file){
 		String content="";
 		boolean correcte=false;
+		teclat.nextLine(); //flush
 		while (!correcte)
 		{
 			try
@@ -116,7 +116,9 @@ public class Aplicacio {
 			{
 				System.out.println("Exceptions.FileNotFoundException: ERROR: No s'ha trobat el fitxer.\n");
 			}
+			
 		}
+		
 		
 		return new String[]{content.toUpperCase(), file}; //passem el string a un char array per a poder encriptar/desencriptar
 	}
@@ -239,8 +241,7 @@ public class Aplicacio {
 		String file="";
 		while (true)
 		{
-			TADCua tad=menu(); //preguntem al usuari quina estructura vol i la inicialitzem
-			clau(tad); //Preguntem la clau a l'usuari i la posem la clau a dins del nostre tad
+			TADCua tad=menu(); //preguntem al usuari quina estructura vol i la inicialitzem, tamb� preguntem la clau i la encuem
 			String[] arrays= llegirFitxer(file); //retornem string de missatge i retornem el nom del fitxer, convertim a char array
 			char[] msgc=arrays[0].toCharArray();
 			file=arrays[1];
@@ -255,7 +256,7 @@ public class Aplicacio {
 				msgc=desencriptar(msgc, tad);
 			}
 			tf=System.nanoTime();
-			System.out.println("S'ha tardat en processar"+(tf-ti)+" ns\nEl resultat és el següent:\n\n"+new String(msgc)); //Fem el cast array char to string
+			System.out.println("S'ha tardat en processar "+(tf-ti)+" ns\nEl resultat és el següent:\n\n"+new String(msgc)); //Fem el cast array char to string
 			EscriureFitxer(file, opt, new String(msgc));
 			teclat.nextLine(); 			teclat.nextLine();
 
