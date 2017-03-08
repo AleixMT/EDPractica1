@@ -20,7 +20,6 @@ public class CuaCircular implements TADCua{
 		this.numElem = 0;
 	}
 	
-	@Override
 	public void encuar(int e) throws CuaPlena{
 		if (numElem == MAX_ELEM) throw new CuaPlena(e);
 		else{
@@ -30,7 +29,6 @@ public class CuaCircular implements TADCua{
 		}
 	}
 
-	@Override
 	public int desencuar() throws CuaBuida {
 		if (esBuida()) throw new CuaBuida();
 		else{
@@ -43,7 +41,6 @@ public class CuaCircular implements TADCua{
 		
 	}
 
-	@Override
 	public int cap() throws CuaBuida {
 		if (esBuida()) throw new CuaBuida();
 		else{
@@ -52,19 +49,16 @@ public class CuaCircular implements TADCua{
 		}
 	}
 
-	@Override
 	public boolean esBuida() {
 		boolean buida=false;
 		if (primer==0 && numElem==0) buida = true;
 		return buida;
 	}
 
-	@Override
 	public int numElem() {
 		return numElem;
 	}
 
-	@Override
 	public boolean esPlena() { 
 		boolean ple = false;
 		if (MAX_ELEM == numElem) ple= true;

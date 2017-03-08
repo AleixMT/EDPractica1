@@ -27,7 +27,7 @@ public class Cua implements TADCua{
 		else
 		{
 			this.cua++;
-			return (this.cuaFIFO[this.cua--]);
+			return (this.cuaFIFO[this.cua-1]);
 		}
 		
 	}
@@ -39,6 +39,7 @@ public class Cua implements TADCua{
 		}
 		else
 		{
+			if ((this.cap==this.cua)&&this.cua==-1) this.cua++;
 			this.cap++;
 			this.cuaFIFO[this.cap]=e;
 		}
