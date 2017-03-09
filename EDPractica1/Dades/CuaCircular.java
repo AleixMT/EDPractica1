@@ -4,7 +4,7 @@ import Exceptions.CuaBuida;
 import Exceptions.CuaPlena;
 import Interface.TADCua;
 /**
- * Classe per a implementar una cua circular
+ * Classe per a implementar una cua circular, implementa la interficie abstracte TADCua
  * @author Cristina Izquierdo
  *
  */

@@ -1,10 +1,9 @@
 package Dades;
-//import java.util.Arrays; 
 import Exceptions.CuaBuida;
 import Exceptions.CuaPlena;
 import Interface.TADCua;
 /**
- * Classe per a implementar una cua FIFO
+ * Classe per a implementar una cua FIFO, implementa la interficie abstracta TADCua
  * @author Aleix Marine
  *
  */
@@ -73,9 +72,6 @@ public class Cua implements TADCua{
 		}
 	}
 
-	/*public String toString() {
-		return "Cua [cua=" + Arrays.toString(cuaFIFO) + "]";
-	}*/
 	public String toString() {
 		String str ="";
 		for (int i=0; i<cuaFIFO.length; i++){

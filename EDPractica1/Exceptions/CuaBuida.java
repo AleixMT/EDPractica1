@@ -1,7 +1,7 @@
 package Exceptions;
 /**
  * Excepcio en cas de que la cua estigui buida
- * @author Cristina Izquierdo i Aleix
+ * @author Cristina i Aleix
  *
  */
 public class CuaBuida extends Exception {
