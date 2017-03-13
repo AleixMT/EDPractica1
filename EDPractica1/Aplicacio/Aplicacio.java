@@ -30,7 +30,7 @@ public class Aplicacio {
 			String[] nombres = clau.split(""); //dividim la clau en strings de un sol numero
 			try
 			{
-				if (clau.isEmpty()) throw new Cadenabuida(); //salta excepcio si esta  buida
+				if (clau.isEmpty()) throw new Cadenabuida(); //salta excepcio si estaï¿½ buida
 				for (int i=0; i<nombres.length; i++)
 				{
 					aux[i]=Integer.parseInt(nombres[i]); //convertim string d'un sol nombre a enter, en un vector d'enters
@@ -73,7 +73,7 @@ public class Aplicacio {
 				case 2: tad=new CuaCircular(num); break; 
 				case 3: tad=new CuaDinamica();break;
 				case 4: tad=new JavaUtil();break;
-				default: System.out.println("Aquesta opcio no esta  a la llista... \n");break;
+				default: System.out.println("Aquesta opcio no estaï¿½ a la llista... \n");break;
 				}
 			}
 			catch (InputMismatchException e)
@@ -100,7 +100,6 @@ public class Aplicacio {
 	 * @param file -- fitxer a llegir
 	 * @return contingut del fitxer 
 	 */
-	@SuppressWarnings("resource")
 	public static String[] llegirFitxer(String file){
 		String content="";
 		boolean correcte=false;
@@ -111,7 +110,7 @@ public class Aplicacio {
 			{
 				System.out.println("Introdueix el nom del fitxer");
 				file = teclat.nextLine();
-				if (file.isEmpty()) throw new Cadenabuida(); //salta excepcio si esta  buida
+				if (file.isEmpty()) throw new Cadenabuida(); //salta excepcio si estaï¿½ buida
 				content = new Scanner(new File(file)).useDelimiter("\\Z").next();
 				if (content.isEmpty()) throw new FitxerBuit(file);
 				System.out.println("CONTINGUT DEL FITXER:\n\n"+content+"\n"); //debug
@@ -121,7 +120,7 @@ public class Aplicacio {
 			{
 				System.out.println(e);
 			}
-			catch (FitxerBuit e) //El fitxer esta  buit
+			catch (FitxerBuit e) //El fitxer estaï¿½ buit
 			{
 				System.out.println(e);
 			}
@@ -131,7 +130,7 @@ public class Aplicacio {
 			}
 			catch (NoSuchElementException e)
 			{
-				System.out.println("ERROR: El fitxer "+file+" esta  buit.");
+				System.out.println("ERROR: El fitxer "+file+" estaï¿½ buit.");
 			}
 			
 		}
@@ -284,7 +283,7 @@ public class Aplicacio {
 		String file="";
 		while (true)
 		{
-			TADCua tad=menu(); //preguntem al usuari quina estructura vol i la inicialitzem, també preguntem la clau i la encuem
+			TADCua tad=menu(); //preguntem al usuari quina estructura vol i la inicialitzem, tambï¿½ preguntem la clau i la encuem
 			String[] arrays= llegirFitxer(file); //retornem string de missatge i retornem el nom del fitxer, convertim a char array
 			char[] msgc=arrays[0].toCharArray();
 			file=arrays[1];
