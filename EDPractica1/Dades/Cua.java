@@ -11,8 +11,8 @@ public class Cua implements TADCua{
 	private int[] cuaFIFO;
 	private int cap;
 	public Cua(int Elem){
-		this.cuaFIFO=new int[Elem];
-		this.cap=-1;
+		this.cuaFIFO=new int[Elem]; //el vector d'elements
+		this.cap=-1;	//inicialitzem el cap (o últim afegit)
 	}
 	
 	public int desencuar() throws CuaBuida{
@@ -22,12 +22,12 @@ public class Cua implements TADCua{
 		}
 		else
 		{
-			int aux = this.cuaFIFO[0];
-			for (int i=0; i<this.cap; i++)
+			int aux = this.cuaFIFO[0]; //obtenim el valor del ultim en un auxiliar
+			for (int i=0; i<this.cap; i++) //Desplacem tot el vector
 			{
 				this.cuaFIFO[i]=this.cuaFIFO[i+1];
 			}
-			this.cap--;
+			this.cap--; //decrementem la posicio del ultim
 			return (aux);
 		}
 		
@@ -40,8 +40,8 @@ public class Cua implements TADCua{
 		}
 		else
 		{
-			this.cap++;
-			this.cuaFIFO[this.cap]=e;
+			this.cap++; //aumentem index
+			this.cuaFIFO[this.cap]=e; //afegim l'últim
 		}
 		
 	}
@@ -53,7 +53,7 @@ public class Cua implements TADCua{
 		}
 		else
 		{
-			return this.cuaFIFO[this.cap];
+			return this.cuaFIFO[this.cap]; //retornem l'ultim element
 		}
 	}
 
@@ -72,7 +72,7 @@ public class Cua implements TADCua{
 		}
 	}
 
-	public String toString() {
+	public String toString() {	//Per a imprimir tota la cua
 		String str ="";
 		for (int i=0; i<cuaFIFO.length; i++){
 			str=str+cuaFIFO[i];
@@ -80,7 +80,7 @@ public class Cua implements TADCua{
 		return "Cua [cua=" +str+ "]";
 	}
 	
-	public int numElem(){
+	public int numElem(){ //el nombre d'elements sempre es la posicio del cap mes 1
 		if (esBuida())
 		{
 			return 0;

@@ -8,13 +8,15 @@ import Interface.TADCua;
  *
  */
 public class CuaDinamica implements TADCua{
-	private Node cim;
+	private Node ultim;
+	private Node primer;
 	public CuaDinamica(){
-		cim=null;
+		ultim=null;
+		primer=null;
 	}
 	public void encuar(int e){
-		Node nou = new Node(this.cim, e);
-		this.cim=nou;
+		this.ultim = new Node(this.ultim, e);
+		if (primer==null) this.primer=this.ultim;
 	}
 
 	public int desencuar() throws CuaBuida {
@@ -24,20 +26,9 @@ public class CuaDinamica implements TADCua{
 		}
 		else
 		{
-			Node aux=this.cim;
-			if (aux.getAnterior()==null)
-			{
-				int r = cim.getValor();
-				cim=null;
-				return r;
-			}
-			while (aux.getAnterior().getAnterior()!=null)
-			{
-				aux=aux.getAnterior();
-			}
-			int value = aux.getAnterior().getValor();
-			aux.setAnterior(null);
-			return value;
+			int aux = this.primer.getValor();
+			this.primer = this.primer.getAnterior();
+			return aux;
 		}
 		
 	}
@@ -49,18 +40,18 @@ public class CuaDinamica implements TADCua{
 		}
 		else
 		{
-			return cim.getValor();
+			return this.ultim.getValor();
 		}
 	}
 
 	public boolean esBuida() {
-		return (cim == null);
+		return (ultim == null);
 	}
 
 	public int numElem() {
 		if (esBuida()) return 0;
-		Node aux=this.cim;
-		int numero=0;
+		Node aux=this.primer;
+		int numero;
 		for (numero=0;aux!=null; numero++)
 		{
 			aux=aux.getAnterior();

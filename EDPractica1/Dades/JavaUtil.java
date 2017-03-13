@@ -5,6 +5,7 @@ import Interface.TADCua;
 import java.util.*;
 /**
  * Classe per a implementar una cua amb llibreries de java util, implementa la interficie abstracte TADCua
+ * Aquesta classe fa un wrap de una de les classes ja implementades de java
  * @author Cristina Izquierdo i Aleix Marine
  *
  */
