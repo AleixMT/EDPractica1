@@ -3,8 +3,8 @@ package Dades;
 import Exceptions.CuaBuida;
 import Interface.TADCua;
 /**
- * Classe per a implementar una cua circular
- * @author Cristina Izquierdo
+ * Classe per a implementar una cua dinamica, implementa la interficie abstracte TADCua
+ * @author Aleix Marine
  *
  */
 public class CuaDinamica implements TADCua{

@@ -1,22 +1,18 @@
 package Dades;
-//import java.util.Arrays; 
 import Exceptions.CuaBuida;
 import Exceptions.CuaPlena;
 import Interface.TADCua;
 /**
- * Classe per a implementar una cua FIFO
+ * Classe per a implementar una cua FIFO, implementa la interficie abstracta TADCua
  * @author Aleix Marine
  *
  */
 public class Cua implements TADCua{
 	private int[] cuaFIFO;
 	private int cap;
-	private int cua;
-	
 	public Cua(int Elem){
-		this.cap=-1;
-		this.cua=-1;
 		this.cuaFIFO=new int[Elem];
+		this.cap=-1;
 	}
 	
 	public int desencuar() throws CuaBuida{
@@ -26,8 +22,13 @@ public class Cua implements TADCua{
 		}
 		else
 		{
-			this.cua++;
-			return (this.cuaFIFO[this.cua-1]);
+			int aux = this.cuaFIFO[0];
+			for (int i=0; i<this.cap; i++)
+			{
+				this.cuaFIFO[i]=this.cuaFIFO[i+1];
+			}
+			this.cap--;
+			return (aux);
 		}
 		
 	}
@@ -39,7 +40,6 @@ public class Cua implements TADCua{
 		}
 		else
 		{
-			if ((this.cap==this.cua)&&this.cua==-1) this.cua++;
 			this.cap++;
 			this.cuaFIFO[this.cap]=e;
 		}
@@ -58,14 +58,7 @@ public class Cua implements TADCua{
 	}
 
 	public boolean esBuida() {
-		if (this.cap<this.cua||((this.cap==this.cua)&&this.cua==-1))
-		{
-			return true;
-		}
-		else
-		{
-			return false;
-		}
+		return this.cap==-1;
 	}
 
 	public boolean esPlena() {
@@ -79,9 +72,6 @@ public class Cua implements TADCua{
 		}
 	}
 
-	/*public String toString() {
-		return "Cua [cua=" + Arrays.toString(cuaFIFO) + "]";
-	}*/
 	public String toString() {
 		String str ="";
 		for (int i=0; i<cuaFIFO.length; i++){
@@ -97,7 +87,7 @@ public class Cua implements TADCua{
 		}
 		else
 		{
-			return this.cap-this.cua;
+			return this.cap+1;
 		}
 	}
 	

@@ -1,7 +1,7 @@
 package Interface;
 import Exceptions.*;
 /**
- * Interface per a definir el contenidor/col·leccio cua.
+ * Interface abstracte per a definir el contenidor cua.
  * 
  * @author Aleix Marine i Cristina Izquierdo
  *
@@ -10,7 +10,7 @@ public abstract interface TADCua {
 	/**
 	 * Afegeix un enter de la clau a la cua
 	 * @pre cert
-	 * @post es igual a la cua inicial pero amb el enter e afegit
+	 * @post es igual a la cua inicial pero amb el enter e afegir
 	 * @param e - enter a afegir
 	 * @throws CuaPlena - la cua esta plena i no es pot afegir el valor
 	 */
