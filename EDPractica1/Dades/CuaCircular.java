@@ -24,21 +24,21 @@ public class CuaCircular implements TADCua{
 		if (esPlena()) throw new CuaPlena(e);
 		else{
 			primer++;
-			if (primer%cuaCir.length==0); primer=0;
+			if (primer%cuaCir.length==0) primer=0; //si hem arribat al final de la cua, tornem al principi
 			cuaCir[primer] = e; //afegim el nou element a la seguent posicio
-			numElem++;
+			numElem++; //augmentem el numero d'elements
 		}
 	}
 
 	public int desencuar() throws CuaBuida {
-		if (esBuida()) throw new CuaBuida();
+		if (esBuida()) throw new CuaBuida(); //comprovem que la cua no estigui buida
 		else{
 			
-			int aux = cuaCir[ultim];
-			ultim++;
-			numElem--;
-			if (ultim%cuaCir.length==0); ultim=0; 
-			return aux;
+			int aux = cuaCir[ultim]; //guardem l'ultim de la cua
+			ultim++; //augmentem l'index per a eliminar la ultima posicio
+			numElem--; //reduim el numero d'elements
+			if (ultim%cuaCir.length==0); ultim=0; //si hem arribat al final de la cua, tornem al inici
+			return aux; //retornem el element que hem desencuat
 		}
 		
 	}
@@ -50,15 +50,15 @@ public class CuaCircular implements TADCua{
 		}
 	}
 
-	public boolean esBuida() {
+	public boolean esBuida() { //retornara cert si el numero d'elements es 0 (buida)
 		return numElem==0;
 	}
 
-	public int numElem() {
+	public int numElem() { //retornem el numero d'elements
 		return numElem;
 	}
 
-	public boolean esPlena() { 
+	public boolean esPlena() {  //si el numero d'elements es igual a la llargada de la cua, esta plena
 		return numElem==cuaCir.length;
 	}
 

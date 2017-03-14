@@ -247,23 +247,24 @@ public class Aplicacio {
 	 */
 	public static void EscriureFitxer(String file, int opt, String msg)
 	{
-		String[] aux;
+		String[] aux = new String[2];
+		aux[0]= "";
 		aux=file.split("\\.", 2); //Partim el nom del fitxer en dos trossos, el nom i l'extensio
 		try
 		{
 			if (opt==1)	//segons l'opcio afegim el sufix diferent
 			{ 
-				file=aux[0]+"_vX."+aux[1]; 
+				file=aux[0]+"_vX.txt"; 
 			}
 			else
 			{
-				file=aux[0]+"_vD."+aux[1];
+				file=aux[0]+"_vD.txt";
 			}
 			Writer writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(file), "utf-8")); //obrim el writer
 			writer.write(msg); //Escrivim tot el msg
 			writer.close();	//tanquem el buffer
 		}
-		catch (IOException e) //Excepció d'entrada sortida
+		catch (IOException e) //Excepcio d'entrada sortida
 		{
 			System.out.println(e);
 		}
