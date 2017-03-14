@@ -15,6 +15,11 @@ public class Cua implements TADCua{
 		this.cap=-1;	//inicialitzem el cap (o Ãºltim afegit)
 	}
 	
+	/**
+	 * Eliminem l'últim element i desplacem tots els elements una posició per a emplenar 
+	 * la resta del vector. Modifiquem els punters i retornem valor.
+	 * @throw llença cua buida si s'intenta desencuar una cua buida
+	 */
 	public int desencuar() throws CuaBuida{
 		if (esBuida())
 		{

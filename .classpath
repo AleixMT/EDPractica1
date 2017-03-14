@@ -2,6 +2,5 @@
 <classpath>
 	<classpathentry kind="src" path="EDPractica1"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry kind="src" path="/PilaEnters"/>
 	<classpathentry kind="output" path="ConjuntEnters/bin"/>
 </classpath>
