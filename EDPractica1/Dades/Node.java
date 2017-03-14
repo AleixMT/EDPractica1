@@ -1,6 +1,6 @@
 package Dades;
 /**
- * Classe Node per a crear la cua dinamica
+ * Classe Node per a crear la cua dinamica. Conte el valor i la referencia al node anterior
  * @author Aleix Marine
  *
  */

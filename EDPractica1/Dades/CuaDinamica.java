@@ -8,36 +8,31 @@ import Interface.TADCua;
  *
  */
 public class CuaDinamica implements TADCua{
-	private Node cim;
+	private Node ultim;
+	private Node primer;
+	private int numElem;
 	public CuaDinamica(){
-		cim=null;
+		ultim=null;
+		primer=null;
+		numElem=0;
 	}
 	public void encuar(int e){
-		Node nou = new Node(this.cim, e);
-		this.cim=nou;
+		this.ultim = new Node(this.ultim, e); //afegim un nou element a la cua amb la classe Node
+		if (primer==null) this.primer=this.ultim; //si el primer encara no s'ha inicilitzat vol dir que estem al principi, llavors sera igual al ultim
+		numElem++;
 	}
 
 	public int desencuar() throws CuaBuida {
 		if (esBuida())
 		{
-			throw new CuaBuida();
+			throw new CuaBuida(); //comprovem que la cua no estigui buida
 		}
 		else
 		{
-			Node aux=this.cim;
-			if (aux.getAnterior()==null)
-			{
-				int r = cim.getValor();
-				cim=null;
-				return r;
-			}
-			while (aux.getAnterior().getAnterior()!=null)
-			{
-				aux=aux.getAnterior();
-			}
-			int value = aux.getAnterior().getValor();
-			aux.setAnterior(null);
-			return value;
+			int aux = this.primer.getValor(); //agafem el valor del primer, el que desencuarem
+			this.primer = this.primer.getAnterior(); //movem el punter al anterior, per eliminar el que hi havia al primer
+			numElem--;
+			return aux; //retornem el que hem desencuat
 		}
 		
 	}
@@ -45,30 +40,24 @@ public class CuaDinamica implements TADCua{
 	public int cap() throws CuaBuida {
 		if (esBuida())
 		{
-			throw new CuaBuida();
+			throw new CuaBuida(); //comprovem que no estigui buida
 		}
 		else
 		{
-			return cim.getValor();
+			return this.ultim.getValor(); //retornem l'ultim element afegit
 		}
 	}
 
 	public boolean esBuida() {
-		return (cim == null);
+		return (ultim == null); //si l'ultim es null vol dir que no hi ha cap element a la cua
 	}
 
 	public int numElem() {
 		if (esBuida()) return 0;
-		Node aux=this.cim;
-		int numero=0;
-		for (numero=0;aux!=null; numero++)
-		{
-			aux=aux.getAnterior();
-		}
-		return numero;
+		return numElem; //en cas de que no estigui buida, retornem el numElem
 	}
 
-	public boolean esPlena() {
+	public boolean esPlena() {//mai podra ser plena per la propia implementacio, anem creant segons necessitem
 		return false;
 	}
 
