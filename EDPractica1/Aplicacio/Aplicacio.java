@@ -270,10 +270,8 @@ public class Aplicacio {
 		}
 	}
 	/**
-	 * Metode principal del programa
-	 * @param args
-	 * @throws FileNotFoundException salta en cas de que no es trobi cap fitxer
-	 * @throws CuaPlena salta en cas de que la cua estigui plena
+	 * Funció principal del programa
+	 * @param args arguments d'entrada
 	 */
 	public static void main(String[] args) {
 		long ti, tf; // temps per a mesurar l'eficiencia de l'algorisme
